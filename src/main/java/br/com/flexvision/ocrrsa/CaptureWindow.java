@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class CaptureWindow {
 
 	public CaptureWindow() {
-
 		/* Verifique o recurso de transparência */
 		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice gd = ge.getDefaultScreenDevice();
@@ -20,8 +19,8 @@ public class CaptureWindow {
 
 		TransparentFrame tw = new TransparentFrame();
 
-		// Set a janela com 55% opacidade.
-		tw.setOpacity(0.55f);
+		// Set a janela com 15% opacidade.
+		tw.setOpacity(0.15f);
 
 		// Abre a janela.
 		tw.setVisible(true);

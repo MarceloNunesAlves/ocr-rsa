@@ -1,11 +1,16 @@
 package br.com.flexvision.ocrrsa;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseMotionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 class TransparentFrame extends JFrame implements MouseMotionListener, ActionListener {
 
@@ -16,10 +21,12 @@ class TransparentFrame extends JFrame implements MouseMotionListener, ActionList
 
 		setLayout(new GridBagLayout());
 
-		setSize(150, 150);
+		setSize(150, 35);
 
 		setLocation(200, 200);
 
+		getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.RED));
+		
 		// Starting the thread that will read the screen
 		ThreadReadData t = new ThreadReadData();
 		t.windowRefence = this;

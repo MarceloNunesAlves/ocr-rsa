@@ -22,22 +22,23 @@ class ThreadReadData extends Thread {
 					Robot robot;
 					try {
 						robot = new Robot();
-
+						
+						String path = System.getProperty("user.dir");//Caminho do lugar onde o App esta rodando
+						
 						BufferedImage screenShot = robot.createScreenCapture(new Rectangle(
 								windowRefence.getLocationOnScreen().x, windowRefence.getLocationOnScreen().y,
 								windowRefence.getSize().width, windowRefence.getSize().height));
-						Graphics2D graphics = screenShot.createGraphics();
-
+						
 						// Save your screen shot with its label
-						ImageIO.write(screenShot, "png", new File("c:\\OCR\\myScreenShot.png"));
+						ImageIO.write(screenShot, "png", new File(path+"\\screenShot.png"));
 
 						// Call the tesseract.exe OCR
 						Process process = new ProcessBuilder(
-								".\\ocr-lib\\Tesseract-OCR-WIN\\Tesseract-OCR\\tesseract.exe",
-								"c:\\tmp\\myScreenShot.png", "c:\\tmp\\out").start();
+								path+"\\ocr-lib\\Tesseract-OCR-WIN\\tesseract.exe",
+								path+"\\screenShot.png", path+"\\out").start();
 
 						// Read the data from the output file
-						String everything = this.readFile("c:\\\\tmp\\out.txt");
+						String everything = this.readFile(path+"\\out.txt");
 
 						System.out.println("OCR:" + everything);
 
@@ -46,7 +47,7 @@ class ThreadReadData extends Thread {
 					}
 				}
 
-				this.sleep(1000);
+				this.sleep(5000);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
