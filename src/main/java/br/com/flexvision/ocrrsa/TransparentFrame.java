@@ -1,19 +1,22 @@
 package br.com.flexvision.ocrrsa;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseMotionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 class TransparentFrame extends JFrame implements MouseMotionListener, ActionListener {
 
+	@Autowired
+	private RsaRepository rsaRepository;
+	
 	public TransparentFrame() {
 		addMouseMotionListener(this);
 
@@ -29,7 +32,7 @@ class TransparentFrame extends JFrame implements MouseMotionListener, ActionList
 		
 		// Starting the thread that will read the screen
 		ThreadReadData t = new ThreadReadData();
-		t.windowRefence = this;
+		t.setWindowRefence(this);
 		t.start();
 
 	}
@@ -48,5 +51,10 @@ class TransparentFrame extends JFrame implements MouseMotionListener, ActionList
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 	}
+
+	public RsaRepository getRsaRepository() {
+		return rsaRepository;
+	}
+	
 	
 }

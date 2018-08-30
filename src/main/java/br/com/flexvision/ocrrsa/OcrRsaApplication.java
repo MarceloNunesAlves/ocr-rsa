@@ -16,5 +16,6 @@ public class OcrRsaApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = new SpringApplicationBuilder(OcrRsaApplication.class).headless(false).run(args);
 		CaptureWindow appFrame = context.getBean(CaptureWindow.class);
+		appFrame.init();
 	}
 }
